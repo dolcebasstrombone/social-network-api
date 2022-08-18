@@ -1,10 +1,66 @@
-//thoughtText (string, required, 1-280 char)
-//createdAt (date, default to current timestamp, getter to format)
-//username (string, required)
-//reactions (array of nesteddocs created with reaction schema)
+const { Schema, model, Types } = require("mongoose");
+// date formatter
 
 // Reaction Schema
-//reactionId (objectId data type, default to new object id)
-//reactionBody (string,required, 280 max char)
-//username (string, required)
-//created at (date, default to now, getter for format)
+const ReactionSchema = new Schema(
+  {
+    reactionId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    reactionBody: {
+      type: String,
+      required: true,
+      //280 max char
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      //get: formatter for date
+    },
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+  }
+);
+
+const ThoughtSchema = new Schema(
+  {
+    thoughtText: {
+      type: String,
+      required: true,
+      //1-280 char
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+      //get: formatter for date
+    },
+    reactions: [ReactionSchema],
+  },
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
+    },
+    id: false,
+  }
+);
+
+ThoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
+
+const Thought = model("Thought", ThoughtSchema);
+
+module.exports = Thought;
