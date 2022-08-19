@@ -3,17 +3,23 @@ const {
   getAllThought,
   getThoughtById,
   createThought,
+  updateThought,
   deleteThought,
+  addReaction,
+  deleteReaction,
 } = require("../../controllers/thought-controller");
 
 // /api/thoughts
-//post new thought (push thought id to associated user's thoughts array)
 router.route("/").get(getAllThought).post(createThought);
 
 // /api/thoughts/:id
-router.route("/:id").get(getThoughtById).delete(deleteThought); //.put()
+router
+  .route("/:id")
+  .get(getThoughtById)
+  .put(updateThought)
+  .delete(deleteThought);
 
-// example data
+// example data for post
 // {
 //     "thoughtText": "Here's a cool thought...",
 //     "username": "lernantino",
@@ -21,7 +27,15 @@ router.route("/:id").get(getThoughtById).delete(deleteThought); //.put()
 // }
 
 // /api/thoughts/:thoughtId/reactions
-//post new reaction (stored in thought's reactions array)
-// router.route("/:thoughtId/reactions").post().delete()
+router.route("/:thoughtId/reactions").post(addReaction);
+
+// /api/thoughts/:thoughtId/reactions/:reactionId
+router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction);
+
+// example data
+// {
+//     "reactionBody": "This is a reaction.",
+//     "username": "lernantino",
+// }
 
 module.exports = router;
