@@ -27,17 +27,21 @@ To use this application:
 - /api/thoughts/:thoughtId/reactions
 - /api/thoughts/:thoughtId/reactions/:reactionId
 
-### GET routes video
+### Start Server and GET routes video
 
+https://user-images.githubusercontent.com/102071390/185687883-77ffdf89-2abf-4f63-aa4a-3a71285edf93.mp4
 
 ### POST, PUT, and DELETE user video
 
+https://user-images.githubusercontent.com/102071390/185687940-1b066567-8244-4d18-94bf-ac8776eaad34.mp4
 
 ### POST, PUT, and DELETE thought video
 
+https://user-images.githubusercontent.com/102071390/185687954-bb49171e-9fd6-41f5-93a2-379a4efbcf96.mp4
 
 ### POST and DELETE friends and reactions video
 
+https://user-images.githubusercontent.com/102071390/185688009-7993e8ff-c99e-476d-ba6e-33ede4377bf6.mp4
 
 ## Repo Link
 
